@@ -383,7 +383,7 @@ const deleteUser = asyncHandler(async(req, res) => {
 
   return res
     .status(201)
-    .json(new ApiResponse(200, {}, "User deleted successfully"));
+    .json(new ApiResponse(200, {}, "User deleted"));
 })
 
 const changeProfiePicture = asyncHandler(async(req, res) => {
