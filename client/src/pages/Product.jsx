@@ -32,7 +32,7 @@ const Product = () => {
     const fetchProductAndRelated = async () => {
       try {
         const productResponse = await fetch(
-          `/api/product/getProduct/${productId}`
+          `https://e-commerce-app-pearl-six.vercel.app/api/product/getProduct/${productId}`
         );
         if (!productResponse.ok) {
           throw new Error("Failed to fetch product");
@@ -41,7 +41,7 @@ const Product = () => {
         setProduct(productData.data);
 
         const relatedResponse = await fetch(
-          `/api/product/getAllProducts?categoryName=${productData.data.category.name}&perPage=6`
+          `https://e-commerce-app-pearl-six.vercel.app/api/product/getAllProducts?categoryName=${productData.data.category.name}&perPage=6`
         );
         if (!relatedResponse.ok) {
           throw new Error("Failed to fetch related products");

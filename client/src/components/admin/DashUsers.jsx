@@ -23,7 +23,7 @@ const DashUsers = () => {
   const fetchUsers = async () => {
     try {
       const response = await fetch(
-        `/api/users/getUsers?page=${currentPage}&perPage=${perPage}`,
+        `https://e-commerce-app-pearl-six.vercel.app/api/users/getUsers?page=${currentPage}&perPage=${perPage}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -44,7 +44,7 @@ const DashUsers = () => {
 
   const handleDeleteUser = async () => {
     try {
-      const response = await fetch(`/api/users/deleteUser/${userId}`, {
+      const response = await fetch(`https://e-commerce-app-pearl-six.vercel.app/api/users/deleteUser/${userId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${accessToken}`,

@@ -9,7 +9,7 @@ const NewProduct = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("/api/product/getAllProducts?page=1");
+        const response = await fetch("https://e-commerce-app-pearl-six.vercel.app/api/product/getAllProducts?page=1");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }

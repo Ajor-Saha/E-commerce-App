@@ -22,7 +22,7 @@ const Dashboard = () => {
   const handleSignOut = async () => {
     try {
       const response = await fetch(
-        "/api/users/logout",
+        "https://e-commerce-app-pearl-six.vercel.app/api/users/logout",
         {
           method: "POST",
           headers: {

@@ -25,6 +25,7 @@ const addProduct = asyncHandler(async (req, res) => {
     throw new ApiError(401, "productImage file is required");
   }
 
+
   // Create the product object
   const newProduct = await Product.create({
     name,

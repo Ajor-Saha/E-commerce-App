@@ -17,6 +17,7 @@ router.route("/addProduct").post(
     verifyJWT, addProduct
 )
 
+
 router.route("/category/:selectedCategory").get(getProductsByCategoryType)
 router.route("/getProduct/:productId").get(getProductById)
 router.route("/getProducts").get(searchProducts)

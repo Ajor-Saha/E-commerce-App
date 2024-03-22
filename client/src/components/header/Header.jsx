@@ -63,7 +63,7 @@ const Header = () => {
 
   const handleSignOut = async () => {
     try {
-      const response = await fetch("/api/users/logout", {
+      const response = await fetch("https://e-commerce-app-pearl-six.vercel.app/api/users/logout", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`, // Include the access token in the request headers

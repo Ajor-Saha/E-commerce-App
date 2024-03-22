@@ -8,7 +8,7 @@ const UniqueCollection = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("/api/product/getAllProducts?categoryName=Unique");
+        const response = await fetch("https://e-commerce-app-pearl-six.vercel.app/api/product/getAllProducts?categoryName=Unique");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }

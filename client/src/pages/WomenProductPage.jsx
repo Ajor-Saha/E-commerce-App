@@ -18,7 +18,7 @@ const WomenProductPage = () => {
     const fetchProductsByCategory = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`/api/product/getAllProducts?categoryName=${categoryName}&page=${currentPage}`);
+        const response = await fetch(`https://e-commerce-app-pearl-six.vercel.app/api/product/getAllProducts?categoryName=${categoryName}&page=${currentPage}`);
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }

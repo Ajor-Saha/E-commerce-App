@@ -16,7 +16,7 @@ const DashTransaction = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch("/api/order/getAllOrders", {
+        const response = await fetch("https://e-commerce-app-pearl-six.vercel.app/api/order/getAllOrders", {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }

@@ -32,11 +32,11 @@ const AllProducts = () => {
         category: categoryFromUrl,
       });
     }
-    
+   
     const fetchProducts = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/product/getProducts?${searchQuery}`);
+      const res = await fetch(`https://e-commerce-app-pearl-six.vercel.app/api/product/getProducts?${searchQuery}`);
       if (!res.ok) {
         setLoading(false);
         return;

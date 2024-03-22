@@ -6,7 +6,7 @@ const EditPage = () => {
   const { productId } = useParams();
   const { accessToken } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
-  
+ 
   const [productData, setProductData] = useState({
     name: "",
     description: "",
@@ -22,7 +22,7 @@ const EditPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`/api/product/getProduct/${productId}`);
+        const response = await fetch(`https://e-commerce-app-pearl-six.vercel.app/api/product/getProduct/${productId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch product");
         }
@@ -106,7 +106,7 @@ const EditPage = () => {
     data.append("productImage", productImage);
 
     try {
-      const response = await fetch(`/api/product/updateProduct/${productId}`, {
+      const response = await fetch(`https://e-commerce-app-pearl-six.vercel.app/api/product/updateProduct/${productId}`, {
         method: "PATCH",
         headers: {
           Authorization: accessToken ? `Bearer ${accessToken}` : "",

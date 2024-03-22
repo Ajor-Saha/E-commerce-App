@@ -44,10 +44,10 @@ const DashAddProduct = () => {
     data.append("productImage", formData.productImage);
 
     try {
-      const response = await fetch("/api/product/addProduct", {
+      const response = await fetch("https://e-commerce-app-pearl-six.vercel.app/api/product/addProduct", {
         method: "POST",
         headers: {
-          Authorization: accessToken ? `Bearer ${accessToken}` : "",
+          'Authorization': `Bearer ${accessToken}`
         },
         body: data,
       });
@@ -76,12 +76,13 @@ const DashAddProduct = () => {
     } catch (error) {
       console.error("Error adding product:", error.message);
       alert("Failed to add product: " + error.message);
+      setLoading(false);
     }
   };
 
   return (
     <div className="mt-10 mb-10 dark:text-gray-900 mx-auto">
-      <h1 className="text-center mb-5 text-lg font-semibold">
+      <h1 className="text-center dark:text-gray-50 mb-5 text-lg font-semibold">
         Add New Product
       </h1>
       <div>

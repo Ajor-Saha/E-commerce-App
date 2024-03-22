@@ -12,14 +12,14 @@ const Gallery = () => {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
-  
-  const fetchProducts = async (category) => {
+
+const fetchProducts = async (category) => {
     try {
       let url;
       if (category === 'All') {
-        url = '/api/product/getAllProducts?categoryType=Men';
+        url = 'https://e-commerce-app-pearl-six.vercel.app/api/product/getAllProducts?categoryType=Men';
       } else {
-        url = `/api/product/getAllProducts?categoryName=${category}`;
+        url = `https://e-commerce-app-pearl-six.vercel.app/api/product/getAllProducts?categoryName=${category}`;
       }
       const response = await fetch(url);
       if (!response.ok) {

@@ -15,7 +15,7 @@ const Comment = ({ comment, onLike, onEdit, onDelete }) => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch(`/api/users/getUserById/${comment.userId}`);
+        const res = await fetch(`https://e-commerce-app-pearl-six.vercel.app/api/users/getUserById/${comment.userId}`);
         const data = await res.json();
         if (res.ok) {
           setUser(data.data);
@@ -34,11 +34,11 @@ const Comment = ({ comment, onLike, onEdit, onDelete }) => {
   //console.log(comment);
   const handleSave = async () => {
     try {
-      const res = await fetch(`/api/comment/editComment/${comment._id}`, {
+      const res = await fetch(`https://e-commerce-app-pearl-six.vercel.app/api/comment/editComment/${comment._id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: accessToken ? `Bearer ${accessToken}` : '',
+          'Authorization': `Bearer ${accessToken}`
         },
         body: JSON.stringify({
           content: editedContent,

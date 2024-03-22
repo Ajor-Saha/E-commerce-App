@@ -22,7 +22,7 @@ const DashboardComp = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("/api/users/getUsers?perPage=5", {
+        const res = await fetch("https://e-commerce-app-pearl-six.vercel.app/api/users/getUsers?perPage=5", {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -39,7 +39,7 @@ const DashboardComp = () => {
 
     const fetchProducts = async () => {
       try {
-        const res = await fetch("/api/product/getAllProducts?perPage=5", {
+        const res = await fetch("https://e-commerce-app-pearl-six.vercel.app/api/product/getAllProducts?perPage=5", {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -56,7 +56,7 @@ const DashboardComp = () => {
 
     const fetchCountProducts = async () => {
       try {
-        const res = await fetch("/api/product/countProduct", {
+        const res = await fetch("https://e-commerce-app-pearl-six.vercel.app/api/product/countProduct", {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -73,7 +73,7 @@ const DashboardComp = () => {
     const fetchComments = async () => {
       try {
         const response = await fetch(
-          `/api/comment/getAllComment`,
+          `https://e-commerce-app-pearl-six.vercel.app/api/comment/getAllComment`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

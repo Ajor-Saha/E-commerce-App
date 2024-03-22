@@ -14,7 +14,7 @@ const OrderCard = ({ orderDetail }) => {
         const productDetails = [];
         for (const product of orderDetail.products) {
           const response = await fetch(
-            `/api/product/getProduct/${product.productId}`
+            `https://e-commerce-app-pearl-six.vercel.app/api/product/getProduct/${product.productId}`
           ); // Assuming you have an endpoint to fetch product details by productId
           const data = await response.json();
           if (data) {
@@ -39,7 +39,7 @@ const OrderCard = ({ orderDetail }) => {
     try {
       // Send a PATCH request to update the order status
       const response = await fetch(
-        `/api/order/updateDelivery/${orderDetail._id}`,
+        `https://e-commerce-app-pearl-six.vercel.app/api/order/updateDelivery/${orderDetail._id}`,
         {
           method: "PATCH",
           headers: {

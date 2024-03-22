@@ -12,7 +12,7 @@ const DashProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch(`/api/product/getAllProducts?page=${currentPage}`);
+      const response = await fetch(`https://e-commerce-app-pearl-six.vercel.app/api/product/getAllProducts?page=${currentPage}`);
       if (!response.ok) {
         throw new Error('Failed to fetch products');
       }
@@ -39,7 +39,7 @@ const DashProducts = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this product?");
     if (confirmDelete) {
       try {
-        const response = await fetch(`/api/product/deleteProduct/${productId}`, {
+        const response = await fetch(`https://e-commerce-app-pearl-six.vercel.app/api/product/deleteProduct/${productId}`, {
           method: "DELETE",
           headers: {
             Authorization: accessToken ? `Bearer ${accessToken}` : "",

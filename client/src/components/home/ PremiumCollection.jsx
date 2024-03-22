@@ -12,7 +12,7 @@ const PremiumCollection = () => {
       setLoading(true); // Set loading to true before fetching products
       try {
         const response = await fetch(
-          `/api/product/category/${selectedCategory}`
+          `https://e-commerce-app-pearl-six.vercel.app/api/product/category/${selectedCategory}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch products");
