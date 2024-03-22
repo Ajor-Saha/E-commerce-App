@@ -20,6 +20,10 @@ const PayButton = ({ cartItems }) => {
         if (data.url) {
           console.log(data.url);
           window.location.href = data.url;
+        } else {
+          console.error("Error: Invalid response data or URL is missing", data);
+          // Handle the case where data or data.url is undefined
+          // For example, display an error message to the user
         }
       })
       .catch((err) => console.log(err.message));
