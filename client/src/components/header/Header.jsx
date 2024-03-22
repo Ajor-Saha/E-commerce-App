@@ -179,17 +179,17 @@ const Header = () => {
         <FaBars className="cursor-pointer" onClick={toggleSideNav} />{" "}
         {/* Step 3 */}
         {isSideNavOpen && (
-          <div className="fixed top-0 right-0 h-full w-full bg-black bg-opacity-50 flex justify-end">
-            <div className="bg-white w-80 flex flex-col overflow-y-auto">
+          <div className="fixed top-0  right-0 h-full w-full bg-black bg-opacity-50 flex justify-end">
+            <div className="bg-white dark:bg-gray-900 dark:text-gray-50 w-80 flex flex-col overflow-y-auto">
               <div className="flex justify-end p-4">
                 <FaTimes
-                  className="text-black cursor-pointer"
+                  className="text-black dark:text-gray-50 cursor-pointer"
                   onClick={toggleSideNav}
                 />
               </div>
               {/* Your sidenav content here */}
-              <h1 className="text-black ml-3 text-lg">Categories</h1>
-              <ul className="px-4 text-black">
+              <h1 className="text-black dark:text-gray-50 ml-3 text-lg">Categories</h1>
+              <ul className="px-4 text-black dark:text-gray-50">
                 <li className="relative py-2 border-b">
                   <span
                     className="cursor-pointer flex"

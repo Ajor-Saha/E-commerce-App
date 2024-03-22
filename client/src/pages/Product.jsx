@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cart/cartSlice";
 import PremiumCard from "../components/card/PremiumCard";
 import CommentSection from "../components/comment/CommentSection";
+import { Spinner } from "flowbite-react";
 
 const Product = () => {
   const { productId } = useParams();
@@ -31,6 +32,7 @@ const Product = () => {
   useEffect(() => {
     const fetchProductAndRelated = async () => {
       try {
+        setLoading(true);
         const productResponse = await fetch(
           `https://e-commerce-app-pearl-six.vercel.app/api/product/getProduct/${productId}`
         );
@@ -60,7 +62,11 @@ const Product = () => {
   }, [productId]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="py-32 flex justify-center items-center dark:bg-gray-900">
+        <Spinner aria-label="Extra large spinner example" size="xl" />
+      </div>
+    );
   }
 
   if (error) {
@@ -305,18 +311,19 @@ const Product = () => {
                 </p>
               </div>
               <div className="py-2">
-                <CommentSection productId={productId}/>
+                <CommentSection productId={productId} />
               </div>
               <div id="reviews" className="mt-8">
                 <h4 className="text-xl font-semibold mb-4">Customer Reviews</h4>
-                
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="pt-2 flex flex-col px-6 justify-center items-center dark:bg-darkPurple">
-        <h1 className="text-left md:text-left text-lg font-serif dark:text-gray-50">You May Also Like</h1>
+        <h1 className="text-left md:text-left text-lg font-serif dark:text-gray-50">
+          You May Also Like
+        </h1>
         <hr className="w-96 h-1 my-5 bg-gray-500 border-5 rounded dark:bg-gray-900"></hr>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 justify-center items-center px-5 py-5">
           {relatedProduct.map((product) => (
