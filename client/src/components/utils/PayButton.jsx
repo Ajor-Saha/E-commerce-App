@@ -18,6 +18,7 @@ const PayButton = ({ cartItems }) => {
       .then((response) => response.json())
       .then((data) => {
         if (data.url) {
+          console.log(data.url);
           window.location.href = data.url;
         }
       })
