@@ -3,6 +3,7 @@ import { HiUser, HiArrowSmRight, HiDocumentText, HiOutlineUserGroup, HiChartPie,
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { MdPayment } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -124,6 +125,17 @@ const DashSidebar = () => {
                 as="div"
               >
                 Comments
+              </Sidebar.Item>
+            </Link>
+          )}
+          {!currentUser.isAdmin && (
+            <Link to="/dashboard?tab=clientOrder">
+              <Sidebar.Item
+                active={tab === "clientOrder"}
+                icon={MdPayment}
+                as="div"
+              >
+                Your Order
               </Sidebar.Item>
             </Link>
           )}

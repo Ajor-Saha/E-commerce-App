@@ -11,6 +11,7 @@ import DashUsers from "../components/admin/DashUsers";
 import DashboardComp from "../components/admin/DashboardComp";
 import DashTransaction from "../components/admin/DashTransaction";
 import DashComments from "../components/admin/DashComments";
+import DashClientOrder from "../components/admin/DashClientOrder";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,8 @@ const Dashboard = () => {
       {tab === 'transaction' && <DashTransaction /> }
       {/* comments */}
       {tab === 'comments' && <DashComments />}
+      {/*client order */}
+      {tab === 'clientOrder' && <DashClientOrder />}
     </div>
     
   );

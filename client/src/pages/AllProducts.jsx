@@ -86,7 +86,7 @@ const AllProducts = () => {
 
 
   return (
-    <div className='flex flex-col md:flex-row py-18 dark:bg-gray-900'>
+    <div className='flex flex-col md:flex-row min-h-screen pt-18 dark:bg-gray-900'>
       <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
         <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
           <div className='flex   items-center gap-2'>

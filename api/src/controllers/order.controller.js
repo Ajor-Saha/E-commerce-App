@@ -1,4 +1,5 @@
 import { Order } from "../models/order.model.js";
+import { Product } from "../models/product.model.js";
 import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
@@ -71,7 +72,47 @@ const updateDeliveryStatus = asyncHandler(async (req, res) => {
 });
 
 
+const getClientOrders = asyncHandler(async (req, res) => {
+  // Get the user ID from the request
+  const userId = req.user._id;
+
+  // Find the user by ID
+  const user = await User.findById(userId);
+
+  // Check if the user exists
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+  
+  const userEmail = user.email;
+  
+  // Fetch orders matching the user's email
+  let orders = await Order.find({ "shipping.email": userEmail });
+
+  // Populate product details for each order
+  orders = await Promise.all(orders.map(async (order) => {
+    // Populate product details for each product in the order
+    const populatedProducts = await Promise.all(order.products.map(async (product) => {
+      const productDetails = await Product.findById(product.productId);
+      return {
+        ...product.toJSON(),
+        name: productDetails.name,
+        productImage: productDetails.productImage,
+      };
+    }));
+
+    return {
+      ...order.toJSON(),
+      products: populatedProducts,
+    };
+  }));
+
+  return res.status(200).json(new ApiResponse(200, orders, "Orders fetched successfully"));
+});
+
+
 export {
     getAllOrders,
-    updateDeliveryStatus
+    updateDeliveryStatus,
+    getClientOrders
 }

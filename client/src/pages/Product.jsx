@@ -63,11 +63,12 @@ const Product = () => {
 
   if (loading) {
     return (
-      <div className="py-32 flex justify-center items-center dark:bg-gray-900">
-        <Spinner aria-label="Extra large spinner example" size="xl" />
+      <div className="py-32 min-h-screen flex justify-center items-center dark:bg-gray-900">
+        <Spinner aria-label="Extra large spinner example" size="xl" className="text-blue-500 dark:text-blue-400" />
       </div>
     );
   }
+  
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -89,7 +90,7 @@ const Product = () => {
 
   return (
     <div>
-      <div className="font-sans py-32 px-5 dark:bg-gray-900">
+      <div className="font-sans py-32 px-5 min-h-screen dark:bg-gray-900">
         <div className="p-6 lg:max-w-7xl max-w-2xl max-lg:mx-auto">
           <div className="grid items-start grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="w-full lg:sticky top-0 text-center">

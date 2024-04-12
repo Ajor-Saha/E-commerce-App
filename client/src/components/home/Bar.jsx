@@ -41,7 +41,7 @@ const Bar = () => {
 
   return (
     <div className="w-full py-10 dark:bg-gray-900">
-      <div className="flex justify-between bg-gray-100 dark:bg-gray-700 py-4 px-2 dark:text-gray-50 text-gray-800">
+      <div className="flex justify-evenly bg-gray-100 dark:bg-gray-700 py-4 px-2 dark:text-gray-50 text-gray-800">
         <a
           className="btn btn-ghost text-lg"
         >
