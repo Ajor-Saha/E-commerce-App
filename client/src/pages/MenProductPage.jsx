@@ -42,17 +42,17 @@ const MenProductPage = () => {
 
   return (
   
-    <div className="py-20 dark:bg-matteBlack flex flex-col justify-center items-center">
+    <div className="pt-20 min-h-screen dark:bg-matteBlack flex flex-col pb-5">
     <h1 className="text-center text-xl font-semibold py-8">{categoryName}</h1>
     {loading ? ( // Render skeleton if loading is true
-      <div>
+      <div className="mx-auto flex flex-wrap gap-10 justify-center items-center">
         <Skeleton />
         <Skeleton />
         <Skeleton />
       </div>
     ) : (
       // Render product details or content when loading is false
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 justify-center items-center mx-auto">
         {products.map((product) => (
               <PremiumCard key={product._id} product={product} />
         ))}

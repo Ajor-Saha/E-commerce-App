@@ -7,9 +7,10 @@ const KidsProductPage = () => {
 
   return (
     
-      <div className="py-32">
-        <h1>{productName}</h1>
+      <div className="pt-32 min-h-screen dark:bg-matteBlack flex flex-col gap-5">
+        <h1 className="text-center">{productName}</h1>
         {/* Add your product details or content here */}
+        <p className="text-center">No Product yet</p>
       </div>
     
   );
