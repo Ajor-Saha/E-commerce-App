@@ -23,7 +23,8 @@ export default {
       jetBlack: '#343434',
       licorice: '#1B1212',
       matteBlack: '#28282B'
-    }
+    },
+    
   },
   plugins: [
     require('daisyui'),

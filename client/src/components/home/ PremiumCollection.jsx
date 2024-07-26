@@ -32,7 +32,7 @@ const PremiumCollection = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="flex flex-col py-10 dark:bg-darkPurple">
+    <div className="flex flex-col w-full  py-10 dark:bg-darkPurple">
       <div>
         <h2 className="py-10 text-center text-xl font-semibold bg-newarrival dark:text-gray-800 font-serif">
           {" "}

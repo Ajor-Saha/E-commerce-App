@@ -35,7 +35,7 @@ const fetchProducts = async (category) => {
   
 
   return (
-    <div className="py-10 dark:bg-[rgb(16,23,42)] ">
+    <div className="py-10 w-full dark:bg-[rgb(16,23,42)] ">
       <div className="flex items-center justify-center py-4 md:py-8 flex-wrap">
         <button
           type="button"
@@ -73,9 +73,9 @@ const fetchProducts = async (category) => {
           Panjabi
         </button>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-10 px-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-16">
       {images.map((img) => (
-          <Link key={img._id} to={`/product/${img._id}`}>
+          <Link key={img._id} to={`/product/${img._id}`} className="mx-auto">
             <img className="h-80 w-80 rounded-lg" src={img.productImage} alt={img.name} />
           </Link>
         ))}

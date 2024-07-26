@@ -2,7 +2,7 @@ import React from "react";
 
 const Testimonials = () => {
   return (
-    <div className="sm:p-10 p-10 mt-20 dark:mt-0 font-sans bg-blue-50 text-[#333] dark: dark:text-white dark:bg-[rgb(16,23,42)]">
+    <div className="sm:p-10 w-full p-10 mt-20 dark:mt-0 font-sans bg-blue-50 text-[#333] dark: dark:text-white dark:bg-[rgb(16,23,42)]">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-3 gap-4">
           <div className="col-span-2">

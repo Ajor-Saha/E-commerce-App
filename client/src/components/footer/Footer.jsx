@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="dark:bg-gray-900 bg-gray-200 text-gray-800 py-20 lg:py-20 px-16 font-sans dark:mt-0 mt-10  bottom-0 w-full">
+    <footer className="dark:bg-gray-900  bg-gray-200 text-gray-800 py-20 lg:py-20 px-16 font-sans dark:mt-0 mt-10  bottom-0">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
           <h2 className="text-lg dark:text-white font-bold mb-4">Quick Links</h2>

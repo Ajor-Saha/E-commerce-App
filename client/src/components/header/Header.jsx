@@ -83,7 +83,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="dark:bg-gray-800 bg-gray-100 dark:text-white text-black fixed top-0 left-0 w-full z-50 px-5 py-5 flex justify-between items-center">
+    <nav className="dark:bg-gray-800 bg-gray-100  dark:text-white text-black  fixed top- left-0 w-full z-50 px-5 py-5 flex justify-between items-center">
       {/* Left section */}
       <div className="flex items-center">
         <Link to="/" className="text-lg font-semibold dark:text-gray-50">
@@ -92,7 +92,7 @@ const Header = () => {
       </div>
 
       {/* Center section */}
-      <div className="flex justify-center flex-1">
+      <div className="md:flex justify-center hidden">
         <div className="relative w-full max-w-xs ml-2 mr-2">
           <form onSubmit={handleSubmit}>
             <input
@@ -121,7 +121,7 @@ const Header = () => {
       </div>
 
       {/* Right section */}
-      <div className="flex items-center relative">
+      <div className="flex items-center relative mr-5 sm:mr-0">
         <Button
           className="w-12 h-8  mr-2"
           color="gray"

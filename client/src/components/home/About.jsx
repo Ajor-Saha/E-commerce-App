@@ -3,7 +3,7 @@ import about from "../../assets/about.png";
 
 const About = () => {
   return (
-    <div className="bg-gray-100 dark:bg-darkPurple py-14">
+    <div className="bg-gray-100 w-full dark:bg-darkPurple py-14">
       <div className="container mx-auto px-4 py-6 md:py-8 lg:py-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           {/* Left side content */}

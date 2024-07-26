@@ -5,10 +5,8 @@ import NewProduct from "../components/home/NewProduct";
 import UniqueCollection from "../components/home/UniqueCollection";
 import Gallery from "../components/home/Gallery";
 import About from "../components/home/About";
-import PremiumCard from "../components/card/PremiumCard";
 import PremiumCollection from "../components/home/ PremiumCollection";
 import Testimonials from "../components/home/Testimonials";
-import MainLayout from "../components/utils/MainLayout";
 
 const Home = () => {
   return (

@@ -23,7 +23,7 @@ const UniqueCollection = () => {
   }, []);
 
   return (
-    <div className="bg-white font-sans p-10 dark:bg-darkPurple dark:text-gray-50">
+    <div className="bg-white w-full font-sans p-10 dark:bg-darkPurple dark:text-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-xl mx-auto">
             <h2 className="text-3xl font-extrabold  inline-block font-serif">Unique Collection</h2>

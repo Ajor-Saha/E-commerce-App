@@ -5,7 +5,7 @@ const NewProductCard = ({ product }) => {
   const productId = product._id;
 
   return (
-    <div className="bg-white rounded-2xl p-6 cursor-pointer hover:-translate-y-2 transition-all relative">
+    <div className="bg-white w-[330px] sm:w-full mx-auto rounded-2xl p-6 cursor-pointer hover:-translate-y-2 transition-all relative">
       <div className="bg-gray-100 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer absolute top-4 right-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
