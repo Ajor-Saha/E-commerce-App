@@ -37,7 +37,7 @@ const DashProfile = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data.data);
+     // console.log(data.data);
       if (data.success === false) {
         dispatch(updateFailure(data));
         return;
