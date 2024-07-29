@@ -230,21 +230,26 @@ const updateProduct = asyncHandler(async (req, res) => {
   if (color !== undefined) updateFields.color = color;
   if (size !== undefined) updateFields.size = size;
 
-  let productImage;
-  if (
-    req.files &&
-    Array.isArray(req.files.productImage) &&
-    req.files.productImage.length > 0
-  ) {
-    const productImageLocalPath = req.files.productImage[0].path;
-    const uploadedProductImage = await uploadOnCloudinary(
-      productImageLocalPath
-    );
-    if (!uploadedProductImage) {
-      throw new ApiError(400, "Error while uploading productImage");
+  if (req.file) {
+    // Handling productImage upload
+    const file = req.file;
+    const fileBuffer = file.buffer;
+    const mimeType = file.mimetype;
+    const base64Data = Buffer.from(fileBuffer).toString("base64");
+    const fileUri = `data:${mimeType};base64,${base64Data}`;
+
+    try {
+      const uploadResult = await uploadToCloudinary(fileUri, file.originalname);
+
+      if (!uploadResult.success) {
+        throw new ApiError(500, "Error uploading image");
+      }
+
+      const productImage = uploadResult.result?.secure_url;
+      updateFields.productImage = productImage; // Include productImage if it's provided
+    } catch (error) {
+      throw new ApiError(500, "Error uploading product image");
     }
-    productImage = uploadedProductImage.url;
-    updateFields.productImage = productImage; // Include productImage if it's provided
   }
 
   // Check if any fields are provided for update

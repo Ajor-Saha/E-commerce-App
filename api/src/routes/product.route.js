@@ -17,7 +17,7 @@ router.route("/getProduct/:productId").get(getProductById)
 router.route("/getProducts").get(searchProducts)
 router.route("/getAllProducts").get(getAllProducts)
 
-router.route("/updateProduct/:productId").patch(upload.single('productImage'),verifyJWT, updateProduct)
+router.route("/updateProduct/:productId").patch(uploads.single("productImage"), verifyJWT, updateProduct)
 router.route("/deleteProduct/:productId").delete(verifyJWT, deleteProduct)
 router.route("/countProduct").get(verifyJWT, countProducts);
 
