@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { uploadToCloudinary } from "../utils/uploadToCloudinary.js";
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -361,12 +362,12 @@ const getUsers = asyncHandler(async (req, res) => {
   }
 });
 
-const deleteUser = asyncHandler(async(req, res) => {
-  const {userId} = req.params;
+const deleteUser = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
 
-  const admin = await User.findById({ _id:req.user._id });
+  const admin = await User.findById({ _id: req.user._id });
   if (!admin.isAdmin) {
-    throw new ApiError(401, "Unauthorized access")
+    throw new ApiError(401, "Unauthorized access");
   }
 
   const user = await User.findById({ _id: userId });
@@ -381,12 +382,10 @@ const deleteUser = asyncHandler(async(req, res) => {
     throw new ApiError(401, "User not deleted");
   }
 
-  return res
-    .status(201)
-    .json(new ApiResponse(200, {}, "User deleted"));
-})
+  return res.status(201).json(new ApiResponse(200, {}, "User deleted"));
+});
 
-const changeProfiePicture = asyncHandler(async(req, res) => {
+const changeProfiePicture = asyncHandler(async (req, res) => {
   const avatarLocalPath = req.file?.path;
 
   if (!avatarLocalPath) {
@@ -411,26 +410,71 @@ const changeProfiePicture = asyncHandler(async(req, res) => {
 
   return res
     .status(201)
-    .json(new ApiResponse(200, user, "Avatar image updated successfully"));  
-})
+    .json(new ApiResponse(200, user, "Avatar image updated successfully"));
+});
 
-const getUserById = asyncHandler(async(req, res) => {
-   const { userId } = req.params;
-   const user = await User.findById({ _id:userId });
+const getUserById = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+  const user = await User.findById({ _id: userId });
 
-   if (!user) {
-      throw new ApiError(401, "User not found")
-   }
+  if (!user) {
+    throw new ApiError(401, "User not found");
+  }
 
-   const userDetails = await User.findById(user._id).select(
+  const userDetails = await User.findById(user._id).select(
     "-password -refreshToken"
-   );
+  );
 
-   return res
-      .status(201)
-      .json(new ApiResponse(200, userDetails, "User retrive successfully"))
+  return res
+    .status(201)
+    .json(new ApiResponse(200, userDetails, "User retrive successfully"));
+});
 
-})
+
+
+const avatarChange = asyncHandler(async (req, res) => {
+  const file = req.file;
+
+  if (!file) {
+    return res.status(400).json(new ApiResponse(400, {}, "No file provided"));
+  }
+
+  const fileBuffer = file.buffer;
+  const mimeType = file.mimetype;
+  const base64Data = Buffer.from(fileBuffer).toString("base64");
+  const fileUri = `data:${mimeType};base64,${base64Data}`;
+
+  try {
+    const uploadResult = await uploadToCloudinary(fileUri, file.originalname);
+
+    if (!uploadResult.success) {
+      return res.status(500).json(new ApiResponse(500, {}, "Error uploading image"));
+    }
+
+    const imageUrl = uploadResult.result?.secure_url;
+
+    const user = await User.findByIdAndUpdate(
+      req.user?._id,
+      {
+        $set: {
+          avatar: imageUrl,
+        },
+      },
+      { new: true }
+    ).select("-password");
+
+    if (!user) {
+      return res.status(404).json(new ApiResponse(404, {}, "User not found"));
+    }
+
+    return res.status(200).json(new ApiResponse(200, user, "Avatar image updated successfully"));
+  } catch (error) {
+    console.log("Error updating avatar:", error);
+    return res.status(500).json(new ApiResponse(500, {}, "Error updating avatar"));
+  }
+});
+
+
 
 export {
   registerUser,
@@ -443,5 +487,6 @@ export {
   changeProfiePicture,
   getUsers,
   deleteUser,
-  getUserById
+  getUserById,
+  avatarChange
 };

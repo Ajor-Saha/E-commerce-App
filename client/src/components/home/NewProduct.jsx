@@ -30,7 +30,7 @@ const NewProduct = () => {
       <h1 className="text-center font-semibold text-lg bg-newarrival py-8 dark:text-gray-800 font-serif">NEW ARRIVAL</h1>
       <div className="font-[sans-serif] bg-gray-100 dark:bg-darkPurple mt-5">
         <div className="p-4 mx-auto lg:max-w-7xl sm:max-w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-6 justify-center items-center md:justify-between">
+          <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-6 justify-center items-center md:justify-between">
           {loading ? (
               <>
                 <Skeleton/>
