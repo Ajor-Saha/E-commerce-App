@@ -4,6 +4,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { uploadToCloudinary } from "../utils/uploadToCloudinary.js";
 
 const addProduct = asyncHandler(async (req, res) => {
   const { description, name, price, stock, color, size, category } = req.body;
@@ -13,37 +14,49 @@ const addProduct = asyncHandler(async (req, res) => {
     throw new ApiError(401, "All fields are required");
   }
 
-  const productImageLocalPath = req.files?.productImage[0]?.path;
+  const file = req.file;
 
-  if (!productImageLocalPath) {
+  if (!file) {
     throw new ApiError(401, "ProductImage file is required");
   }
 
-  const productImage = await uploadOnCloudinary(productImageLocalPath);
+  const fileBuffer = file.buffer;
+  const mimeType = file.mimetype;
+  const base64Data = Buffer.from(fileBuffer).toString("base64");
+  const fileUri = `data:${mimeType};base64,${base64Data}`;
 
-  if (!productImage) {
-    throw new ApiError(401, "productImage file is required");
+  try {
+    const uploadResult = await uploadToCloudinary(fileUri, file.originalname);
+
+    if (!uploadResult.success) {
+      throw new ApiError(500, "Error uploading image");
+    }
+
+    const productImage = uploadResult.result?.secure_url;
+
+    // Create the product object
+    const newProduct = await Product.create({
+      name,
+      description,
+      productImage,
+      price,
+      stock,
+      category,
+      owner: req.user._id,
+      color: color || [],
+      size: size || [],
+    });
+
+    const createdProduct = await Product.findById(newProduct._id);
+
+    return res
+      .status(201)
+      .json(new ApiResponse(200, createdProduct, "Product added successfully"));
+  } catch (error) {
+    console.log("Error adding product:", error);
+    throw new ApiError(500, "Error adding product");
   }
 
-
-  // Create the product object
-  const newProduct = await Product.create({
-    name,
-    description,
-    productImage: productImage.url,
-    price,
-    stock,
-    category,
-    owner: req.user._id,
-    color: color || [],
-    size: size || [],
-  });
-
-  const createdProduct = await Product.findById(newProduct._id);
-
-  return res
-    .status(201)
-    .json(new ApiResponse(200, createdProduct, "Product add successfully"));
 });
 
 const getProductsByCategoryType = asyncHandler(async (req, res) => {
