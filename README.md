@@ -73,3 +73,9 @@ As an admin, you have additional privileges and responsibilities for managing th
   </tr>
 </table>
 
+###  For test purpose
+admin panel access : 
+
+email : shanto@gmail.com
+
+password: abc123
